@@ -1,16 +1,59 @@
 import "./Navbar.scss";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 const Navbar = () => {
   const [active, setActive] = useState(false);
   const [open, setOpen] = useState(false);
+  
+  const { pathname } = useLocation();
+
+  const menuLinks = [
+    {
+      id: 1,
+      name: "Graphic & Design",
+      link: "/",
+    },
+    {
+      id: 2,
+      name: "Video & Animation",
+      link: "/",
+    },
+    {
+      id: 3,
+      name: "Writing & Translation",
+      link: "/",
+    },
+    {
+      id: 4,
+      name: "AI Service",
+      link: "/",
+    },
+    {
+      id: 5,
+      name: "Digital Marketing",
+      link: "/",
+    },
+    {
+      id: 6,
+      name: "Music & Audio",
+      link: "/",
+    },
+    {
+      id: 7,
+      name: "Programming & Tech",
+      link: "/",
+    },
+  ];
 
   const user = {
     id: 1,
     userName: "Mayur",
     isSeller: true,
   };
+
+
+
 
   const isActive = () => {
     window.scrollY > 0 ? setActive(true) : setActive(false);
@@ -25,12 +68,14 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className={active ? "navbar active" : "navbar"}>
+    <div className={active || pathname !== "/" ? "navbar active" : "navbar"}>
       <div className="container">
-        <div className="logo">
-          <span className="text">Fiverr</span>
-          <span className="dot">.</span>
-        </div>
+        <Link to="/" className="link">
+          <div className="logo">
+            <span className="text">Fiverr</span>
+            <span className="dot">.</span>
+          </div>
+        </Link>
         <div className="links">
           <span>Fiverr Business</span>
           <span>Explore</span>
@@ -46,28 +91,42 @@ const Navbar = () => {
                 <div className="options">
                   {user?.isSeller && (
                     <>
-                      <span>Gigs</span>
-                      <span>Add New Gig</span>
+                      <Link className="link" to="/myGigs">
+                        Gigs
+                      </Link>
+                      <Link className="link" to="/add">
+                        Add New Gig
+                      </Link>
                     </>
                   )}
-                  <span>Orders</span>
-                  <span>Messages</span>
-                  <span>Logout</span>
+                  <Link className="link" to="/orders">
+                    Orders
+                  </Link>
+                  <Link className="link" to="/messages">
+                    Messages
+                  </Link>
+                  <Link className="link" to="/">
+                    Logout
+                  </Link>
                 </div>
               )}
             </div>
           )}
         </div>
       </div>
-      {active && (
-        <>
-          <hr />
-          <div className="menu">
-            <span>test</span>
-            <span>test1</span>
-          </div>
-        </>
-      )}
+      {active ||
+        (pathname !== "/" && (
+          <>
+            <hr />
+            <div className="menu">
+              {menuLinks.map((item) => (
+                <Link className="link" to={item.link} key={item.id}>
+                  {item.name}
+                </Link>
+              ))}
+            </div>
+          </>
+        ))}
     </div>
   );
 };
