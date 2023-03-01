@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 const Navbar = () => {
   const [active, setActive] = useState(false);
   const [open, setOpen] = useState(false);
-  
+
   const { pathname } = useLocation();
 
   const menuLinks = [
@@ -51,9 +51,6 @@ const Navbar = () => {
     userName: "Mayur",
     isSeller: true,
   };
-
-
-
 
   const isActive = () => {
     window.scrollY > 0 ? setActive(true) : setActive(false);
@@ -114,19 +111,18 @@ const Navbar = () => {
           )}
         </div>
       </div>
-      {active ||
-        (pathname !== "/" && (
-          <>
-            <hr />
-            <div className="menu">
-              {menuLinks.map((item) => (
-                <Link className="link" to={item.link} key={item.id}>
-                  {item.name}
-                </Link>
-              ))}
-            </div>
-          </>
-        ))}
+      {(active || pathname !== "/") && (
+        <>
+          <hr />
+          <div className="menu">
+            {menuLinks.map((item) => (
+              <Link className="link" to={item.link} key={item.id}>
+                {item.name}
+              </Link>
+            ))}
+          </div>
+        </>
+      )}
     </div>
   );
 };
