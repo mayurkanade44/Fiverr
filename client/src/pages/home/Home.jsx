@@ -1,5 +1,5 @@
-import { CategoryCard, Featured, Slide, TrustedBy } from "../../components";
-import { cards } from "../../data";
+import { CategoryCard, Featured, ProjectCard, Slide, TrustedBy } from "../../components";
+import { cards, projects } from "../../data";
 import "./Home.scss";
 
 const Home = () => {
@@ -58,7 +58,7 @@ const Home = () => {
         <div className="container">
           <div className="item">
             <h1>
-              liverr <i>business</i>
+              Fiverr <i>business</i>
             </h1>
             <h1>
               A business solution designed for <i>teams</i>
@@ -91,6 +91,11 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <Slide slidesToShow={4} arrowsScroll={1}>
+        {projects.map((card) => (
+          <ProjectCard card={card} key={card.id} />
+        ))}
+      </Slide>
     </div>
   );
 };
