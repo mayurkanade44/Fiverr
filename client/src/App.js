@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import { Navbar, Footer } from "./components";
-import { Home, Add } from "./pages";
+import { Home, Add, Gigs } from "./pages";
 
 function App() {
   const Layout = () => {
@@ -25,6 +25,10 @@ function App() {
         {
           path: "/add",
           element: <Add />,
+        },
+        {
+          path: "/gigs",
+          element: <Gigs />,
         },
       ],
     },
