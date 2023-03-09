@@ -5,6 +5,7 @@ import TrustedBy from "./trustedBy/TrustedBy";
 import Slide from "./slide/Slide";
 import CategoryCard from "./categoryCard/CategoryCard";
 import ProjectCard from "./projectCard/ProjectCard";
+import GigCard from "./gigCard/GigCard";
 
 export {
   Navbar,
@@ -14,4 +15,5 @@ export {
   Slide,
   CategoryCard,
   ProjectCard,
+  GigCard,
 };
